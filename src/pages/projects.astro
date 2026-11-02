@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import ExternalArrow from '../components/ExternalArrow.astro';
 import PageHeading from '../components/PageHeading.astro';
+import SectionGlyph from '../components/SectionGlyph.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const liveCount = projects.filter((project) => project.data.live).length;
@@ -9,22 +11,24 @@ const liveCount = projects.filter((project) => project.data.live).length;
 
 <Base title="项目" description="tl y 的原创项目。只收录自研，不含 fork。">
   <PageHeading index="02" label="项目" title="项目">
+    <SectionGlyph slot="glyph" name="projects" />
     {projects.length} 个原创项目，其中 {liveCount} 个已有线上地址。Fork 不在此列。
   </PageHeading>
-  <div class="entry-list">
+  <div class="entry-list manual-offset">
     {projects.map((project) => (
-      <article class="entry-card">
+      <article class="entry-card entry-card-linked">
         <p class="entry-meta type-meta text-muted">
           <span>{project.data.stack.join(' / ')}</span>
-          {project.data.live ? <span>Live</span> : <span>源码</span>}
+          {project.data.live ? <span class="text-green">Live</span> : <span>源码</span>}
         </p>
         <h2 class="type-entry-title">
           <a
-            class="entry-title-link"
+            class="entry-title-link entry-link"
             href={project.data.live ?? project.data.repo}
             rel="noopener noreferrer"
           >
             {project.data.name}
+            <ExternalArrow />
           </a>
         </h2>
         <p class="entry-description type-body text-muted">{project.data.summary}</p>

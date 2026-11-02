@@ -1,0 +1,51 @@
+---
+interface Props {
+  name: 'mark' | 'now' | 'projects' | 'writing';
+}
+
+const { name } = Astro.props;
+---
+
+<svg
+  class="section-glyph line-drawing text-accent"
+  viewBox="0 0 24 18"
+  aria-hidden="true"
+  focusable="false"
+>
+  {
+    name === 'mark' && (
+      <g>
+        <path d="M3 4h8M7 4v11"></path>
+        <path d="M14 4v11h7"></path>
+      </g>
+    )
+  }
+  {
+    name === 'now' && (
+      <g>
+        <path d="M2 14h20"></path>
+        <circle cx="12" cy="8" r="3.5"></circle>
+        <path d="M12 8V5.5"></path>
+      </g>
+    )
+  }
+  {
+    name === 'projects' && (
+      <g>
+        <rect x="3" y="2.5" width="18" height="3.5"></rect>
+        <rect x="5" y="7.25" width="14" height="3.5"></rect>
+        <rect x="7" y="12" width="10" height="3.5"></rect>
+      </g>
+    )
+  }
+  {
+    name === 'writing' && (
+      <g>
+        <path d="M3 4h18"></path>
+        <path d="M3 8h14"></path>
+        <path d="M3 12h18"></path>
+        <path d="M3 16h10"></path>
+      </g>
+    )
+  }
+</svg>
