@@ -1,0 +1,42 @@
+---
+import { isCurrentPath, nav, site } from '../data/site';
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="wordmark" href="/">
+    <span class="wordmark-name type-ui text-primary">{site.name}</span>
+    <span class="type-meta text-muted">{site.tagline}</span>
+  </a>
+  <nav class="site-nav type-ui" aria-label="主导航">
+    <div class="nav-group">
+      {nav.slice(0, 2).map((item) => (
+        <a
+          class="nav-link text-interactive"
+          href={item.href}
+          aria-current={isCurrentPath(path, item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <span class="nav-separator" aria-hidden="true">|</span>
+    <div class="nav-group">
+      {nav.slice(2).map((item) => (
+        <a
+          class="nav-link text-interactive"
+          href={item.href}
+          aria-current={isCurrentPath(path, item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <span class="nav-separator" aria-hidden="true">|</span>
+    <div class="nav-group">
+      <a class="nav-link text-muted" href={site.x.url} rel="noopener noreferrer">X</a>
+      <a class="nav-link text-muted" href={site.github.url} rel="noopener noreferrer">GitHub</a>
+    </div>
+  </nav>
+</header>

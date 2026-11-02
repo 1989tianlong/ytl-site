@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeading from '../components/PageHeading.astro';
+import { site } from '../data/site';
+
+const themes = (await getCollection('writing')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="写作" description="从 X @ytlclaw 提炼的写作主题。这里没有虚构长文。">
+  <PageHeading index="03" label="写作" title="写作">
+    主题来自 X @{site.x.username} 的置顶与公开时间线。本页是索引，不是假文章。
+  </PageHeading>
+  <div class="entry-list">
+    {themes.map((theme) => (
+      <article class="entry-card">
+        <p class="entry-meta type-meta text-muted">
+          <span>{theme.data.source}</span>
+        </p>
+        <h2 class="type-entry-title">
+          <a class="entry-title-link" href={theme.data.href} rel="noopener noreferrer">
+            {theme.data.title}
+          </a>
+        </h2>
+        <p class="entry-description type-body text-muted">{theme.data.summary}</p>
+      </article>
+    ))}
+  </div>
+  <p class="writing-note type-body text-muted">
+    完整时间线在
+    <a class="text-accent" href={site.x.url} rel="noopener noreferrer">X @{site.x.username}</a>
+    。作品与日记的另一处枢纽是
+    <a class="text-accent" href={site.hubs.vitaminclaw} rel="noopener noreferrer">VitaminClaw</a>。
+  </p>
+</Base>
