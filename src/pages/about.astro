@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import ExternalArrow from '../components/ExternalArrow.astro';
 import PageHeading from '../components/PageHeading.astro';
 import { site } from '../data/site';
 ---
@@ -9,7 +10,7 @@ import { site } from '../data/site';
     来源可核的一小段：GitHub、X，以及已经公开的作品枢纽。
   </PageHeading>
 
-  <article class="prose-wrap type-prose">
+  <article class="prose-wrap type-prose manual-offset">
     <p class="type-dropcap">
       tl y。GitHub <a href={site.github.url} rel="noopener noreferrer">{site.github.login}</a>，
       X <a href={site.x.url} rel="noopener noreferrer">@{site.x.username}</a>。在{site.location}。
@@ -31,18 +32,27 @@ import { site } from '../data/site';
     <p>本页不写职务头衔。没有的事实，就不写。</p>
   </article>
 
-  <section class="profile-links" aria-label="在哪里找到我">
+  <section class="profile-links manual-offset" aria-label="在哪里找到我">
     <a class="profile-link" href={site.x.url} rel="noopener noreferrer">
       <span class="type-meta text-muted">X</span>
-      <span class="profile-link-name type-entry-title">@{site.x.username}</span>
+      <span class="profile-link-name type-entry-title">
+        @{site.x.username}
+        <ExternalArrow />
+      </span>
     </a>
     <a class="profile-link" href={site.github.url} rel="noopener noreferrer">
       <span class="type-meta text-muted">GitHub</span>
-      <span class="profile-link-name type-entry-title">{site.github.login}</span>
+      <span class="profile-link-name type-entry-title">
+        {site.github.login}
+        <ExternalArrow />
+      </span>
     </a>
     <a class="profile-link" href={site.hubs.vitaminclaw} rel="noopener noreferrer">
       <span class="type-meta text-muted">作品枢纽</span>
-      <span class="profile-link-name type-entry-title">VitaminClaw</span>
+      <span class="profile-link-name type-entry-title">
+        VitaminClaw
+        <ExternalArrow />
+      </span>
     </a>
   </section>
 </Base>

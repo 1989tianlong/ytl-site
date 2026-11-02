@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import ExternalArrow from '../components/ExternalArrow.astro';
 import PageHeading from '../components/PageHeading.astro';
+import SectionGlyph from '../components/SectionGlyph.astro';
 import { site } from '../data/site';
 
 const themes = (await getCollection('writing')).sort((a, b) => a.data.order - b.data.order);
@@ -9,24 +11,26 @@ const themes = (await getCollection('writing')).sort((a, b) => a.data.order - b.
 
 <Base title="写作" description="从 X @ytlclaw 提炼的写作主题。这里没有虚构长文。">
   <PageHeading index="03" label="写作" title="写作">
+    <SectionGlyph slot="glyph" name="writing" />
     主题来自 X @{site.x.username} 的置顶与公开时间线。本页是索引，不是假文章。
   </PageHeading>
-  <div class="entry-list">
+  <div class="entry-list manual-offset">
     {themes.map((theme) => (
-      <article class="entry-card">
+      <article class="entry-card entry-card-linked">
         <p class="entry-meta type-meta text-muted">
           <span>{theme.data.source}</span>
         </p>
         <h2 class="type-entry-title">
-          <a class="entry-title-link" href={theme.data.href} rel="noopener noreferrer">
+          <a class="entry-title-link entry-link" href={theme.data.href} rel="noopener noreferrer">
             {theme.data.title}
+            <ExternalArrow />
           </a>
         </h2>
         <p class="entry-description type-body text-muted">{theme.data.summary}</p>
       </article>
     ))}
   </div>
-  <p class="writing-note type-body text-muted">
+  <p class="writing-note manual-offset type-body text-muted">
     完整时间线在
     <a class="text-accent" href={site.x.url} rel="noopener noreferrer">X @{site.x.username}</a>
     。作品与日记的另一处枢纽是

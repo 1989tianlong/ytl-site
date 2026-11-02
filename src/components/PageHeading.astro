@@ -8,8 +8,11 @@ interface Props {
 const { index, label, title } = Astro.props;
 ---
 
-<header class="page-heading">
-  <p class="rail type-meta text-muted">{index} / {label}</p>
+<header class="page-heading manual-grid">
+  <div class="rail page-rail">
+    <p class="type-meta text-muted">{index} / {label}</p>
+    <slot name="glyph" />
+  </div>
   <div class="page-main">
     <h1 class="type-title text-primary">{title}</h1>
     <p class="page-description type-body text-muted">

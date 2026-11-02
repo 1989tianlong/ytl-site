@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import PageHeading from '../components/PageHeading.astro';
+import SectionGlyph from '../components/SectionGlyph.astro';
 import { formatZhDate } from '../data/site';
 
 const entries = (await getCollection('now')).sort(
@@ -16,9 +17,10 @@ const { Content } = await render(latest);
 
 <Base title="现在" description="最近在做这些。nownownow 风格的近况页。">
   <PageHeading index="01" label="现在" title={latest.data.title}>
+    <SectionGlyph slot="glyph" name="now" />
     更新于 {formatZhDate(latest.data.updated)}。记下此刻正在投入的事。
   </PageHeading>
-  <article class="prose-wrap type-prose">
+  <article class="prose-wrap type-prose manual-offset">
     <Content />
   </article>
 </Base>

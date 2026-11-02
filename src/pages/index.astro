@@ -1,7 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import AsciiDivider from '../components/AsciiDivider.astro';
 import Chapter from '../components/Chapter.astro';
+import ExternalArrow from '../components/ExternalArrow.astro';
+import SectionGlyph from '../components/SectionGlyph.astro';
 import { formatZhDate, site } from '../data/site';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -17,22 +20,38 @@ const homeWriting = writing.slice(0, 5);
 
 <Base home>
   <div class="manual">
-    <section class="opening" aria-labelledby="home-title">
-      <p class="rail type-meta text-muted">00 / 开场</p>
-      <div class="opening-main">
+    <section class="opening-spread" aria-labelledby="home-title">
+      <div class="opening-rail">
+        <p class="type-meta text-muted">
+          <span class="cursor-text">
+            <span class="cursor-label">00 / 开场</span>
+            <span class="terminal-cursor" aria-hidden="true"></span>
+          </span>
+        </p>
+        <SectionGlyph name="mark" />
+      </div>
+      <div class="opening-intro">
         <div class="opening-lead">
-          <div>
-            <h1 id="home-title" class="type-title text-primary">{site.hero.title}</h1>
-            <p class="opening-line type-heading text-primary">{site.hero.line}</p>
+          <div class="preface-lead type-heading text-primary">
+            <h1 id="home-title" class="type-heading">
+              <span class="lead-phrase">{site.hero.title}</span>
+            </h1>
+            <p>
+              <span class="lead-phrase">{site.hero.line}</span>
+            </p>
           </div>
           <div class="opening-copy type-body">
             <p>
-              tl y。在{site.location}。<br />
-              GitHub {site.github.login}，X @{site.x.username}。
+              <span class="lead-phrase">tl y。</span>
+              <span class="lead-phrase">在{site.location}。</span>
+              <br />
+              <span class="lead-phrase">GitHub {site.github.login}，</span>
+              <span class="lead-phrase">X @{site.x.username}。</span>
             </p>
             <p class="text-muted">
-              公开写踩坑、工作流与小产品。<br />
-              用人机共生，把 AI 实践做成可复用系统。
+              <span class="lead-phrase">公开写踩坑、工作流与小产品。</span>
+              <br />
+              <span class="lead-phrase">用人机共生，把 AI 实践做成可复用系统。</span>
             </p>
           </div>
           <p class="proof-row type-meta text-muted">
@@ -46,36 +65,44 @@ const homeWriting = writing.slice(0, 5);
     </section>
 
     {latestNow && (
-      <Chapter index="01" label="现在" id="now">
-        <header class="chapter-heading">
-          <h2 class="type-heading text-primary">{latestNow.data.title}</h2>
-          <p class="type-meta text-muted">更新于 {formatZhDate(latestNow.data.updated)}</p>
-        </header>
-        <div class="chapter-body">
-          <div class="now-teaser type-body">
-            <ul>
-              {latestNow.data.teaser.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
+      <>
+        <AsciiDivider class="chapter-divider" />
+        <Chapter index="01" label="现在" id="now">
+          <SectionGlyph slot="glyph" name="now" />
+          <header class="chapter-heading">
+            <h2 class="type-heading text-primary">{latestNow.data.title}</h2>
+            <p class="type-meta text-muted">更新于 {formatZhDate(latestNow.data.updated)}</p>
+          </header>
+          <div class="chapter-body">
+            <div class="now-teaser type-body">
+              <ul>
+                {latestNow.data.teaser.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <a class="more-link type-ui text-accent" href="/now">查看现在</a>
           </div>
-          <a class="more-link type-ui text-accent" href="/now">查看现在</a>
-        </div>
-      </Chapter>
+        </Chapter>
+      </>
     )}
 
+    <AsciiDivider class="chapter-divider" />
     <Chapter index="02" label="项目" id="projects">
+      <SectionGlyph slot="glyph" name="projects" />
       <header class="chapter-heading">
         <h2 class="type-heading text-primary">自己做出来的。</h2>
         <p class="type-body text-muted">只收录原创。Fork 不在这里。</p>
       </header>
       <div class="chapter-body">
-        <div class="entry-list">
-          {homeProjects.map((project) => (
-            <article class="entry-card">
+        <div class="chapter-entries">
+          {homeProjects.map((project, i) => (
+            <article class="chapter-entry">
               <p class="entry-meta type-meta text-muted">
-                <span>{project.data.stack.join(' / ')}</span>
-                {project.data.live ? <span>Live</span> : <span>GitHub</span>}
+                <span>
+                  {String(i + 1).padStart(2, '0')} / {project.data.stack[0]}
+                </span>
+                {project.data.live ? <span class="text-green">Live</span> : null}
               </p>
               <h3 class="type-entry-title">
                 <a
@@ -84,6 +111,7 @@ const homeWriting = writing.slice(0, 5);
                   rel="noopener noreferrer"
                 >
                   {project.data.name}
+                  <ExternalArrow />
                 </a>
               </h3>
               <p class="entry-description type-body text-muted">{project.data.summary}</p>
@@ -94,7 +122,9 @@ const homeWriting = writing.slice(0, 5);
       </div>
     </Chapter>
 
+    <AsciiDivider class="chapter-divider" />
     <Chapter index="03" label="写作" id="writing">
+      <SectionGlyph slot="glyph" name="writing" />
       <header class="chapter-heading">
         <h2 class="type-heading text-primary">公开写的主题。</h2>
         <p class="type-body text-muted">从 X 提炼，不是假文章列表。</p>
@@ -103,11 +133,12 @@ const homeWriting = writing.slice(0, 5);
         <div class="writing-rows">
           {homeWriting.map((theme, i) => (
             <article class="writing-row">
-              <p class="type-meta text-muted">{String(i + 1).padStart(2, '0')}</p>
-              <div>
+              <p class="type-meta text-accent">{String(i + 1).padStart(2, '0')}</p>
+              <div class="chapter-entry">
                 <h3 class="type-entry-title">
                   <a class="entry-title-link" href={theme.data.href} rel="noopener noreferrer">
                     {theme.data.title}
+                    <ExternalArrow />
                   </a>
                 </h3>
                 <p class="entry-description type-body text-muted">{theme.data.summary}</p>
