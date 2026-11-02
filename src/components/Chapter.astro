@@ -1,0 +1,16 @@
+---
+interface Props {
+  index: string;
+  label: string;
+  id?: string;
+}
+
+const { index, label, id } = Astro.props;
+---
+
+<section class="chapter" id={id}>
+  <p class="rail type-meta text-muted">{index} / {label}</p>
+  <div class="chapter-main">
+    <slot />
+  </div>
+</section>

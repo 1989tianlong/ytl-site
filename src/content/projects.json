@@ -1,0 +1,89 @@
+[
+  {
+    "id": "vps-supermarket",
+    "name": "VPS 超市",
+    "summary": "VPS 库存监控、优惠推荐与有货提醒。多家厂商补货与折扣一站式对比。",
+    "stack": ["Next.js", "Tailwind", "TypeScript"],
+    "repo": "https://github.com/1989tianlong/vps-supermarket",
+    "live": "https://vps-supermarket.vercel.app",
+    "original": true,
+    "order": 1
+  },
+  {
+    "id": "vitaminclaw",
+    "name": "VitaminClaw",
+    "summary": "AI 日记 · 产品 · 资源。公开记录 AI 实践、可指名的作品，以及值得分享的资源。",
+    "stack": ["Astro"],
+    "repo": "https://github.com/1989tianlong/vitaminclaw.github.io",
+    "live": "https://vitaminclaw.omniquest.fun",
+    "original": true,
+    "order": 2
+  },
+  {
+    "id": "fineprint-ai",
+    "name": "fineprint-ai",
+    "summary": "面向自由职业者的合同审阅：律师风格风险报告。按份付费，不订阅。",
+    "stack": ["Next.js 15", "Tailwind v4", "TypeScript"],
+    "repo": "https://github.com/1989tianlong/fineprint-ai",
+    "live": "https://fineprint-ai-alpha.vercel.app",
+    "original": true,
+    "order": 3
+  },
+  {
+    "id": "netpayout",
+    "name": "netpayout",
+    "summary": "Payoneer / Wise 年度 CSV 打包：总额、手续费、按付款方汇总。",
+    "stack": ["TypeScript"],
+    "repo": "https://github.com/1989tianlong/netpayout",
+    "live": "https://netpayout.vercel.app",
+    "original": true,
+    "order": 4
+  },
+  {
+    "id": "stillstead",
+    "name": "静笃 Stillstead",
+    "summary": "Read in Stillness, Grow in Steadfastness。守静笃 · 万物并作，吾以观复。偏东方气质的静心空间。",
+    "stack": ["TypeScript"],
+    "repo": "https://github.com/1989tianlong/stillstead",
+    "live": "https://stillstead.vercel.app",
+    "original": true,
+    "order": 5
+  },
+  {
+    "id": "yangmingism",
+    "name": "阳明心学",
+    "summary": "生平年表、《传习录》与心即理 · 知行合一 · 致良知，以及面向当代的事上磨炼。",
+    "stack": ["TypeScript"],
+    "repo": "https://github.com/1989tianlong/yangmingism",
+    "original": true,
+    "order": 6
+  },
+  {
+    "id": "EnvBoard",
+    "name": "EnvBoard",
+    "summary": "macOS 原生工具：可视化查看、编辑并安全应用 ~/.zshrc 环境变量。",
+    "stack": ["Swift", "SwiftUI"],
+    "repo": "https://github.com/1989tianlong/EnvBoard",
+    "original": true,
+    "order": 7
+  },
+  {
+    "id": "SymbioWork",
+    "name": "共生工坊",
+    "summary": "SymbioWork：人机、Agent 之间不再只是工具关系，而是共生进化的工作伙伴。",
+    "stack": ["概念仓"],
+    "repo": "https://github.com/1989tianlong/SymbioWork",
+    "original": true,
+    "order": 8
+  },
+  {
+    "id": "FDE",
+    "name": "FDE 制导站",
+    "summary": "《前线部署工程师》学习导读：把原书转译成中国工程师可用的行动框架。",
+    "stack": ["HTML"],
+    "repo": "https://github.com/1989tianlong/FDE",
+    "live": "https://fde-guide.vercel.app",
+    "original": true,
+    "order": 9
+  }
+]

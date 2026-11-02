@@ -1,0 +1,50 @@
+[
+  {
+    "id": "symbiosis",
+    "title": "人机共生",
+    "summary": "Grok Bot 团队、人与 AI 的共生关系。对应 GitHub 上的共生工坊（SymbioWork）。",
+    "source": "X · 主题",
+    "href": "https://x.com/ytlclaw",
+    "order": 1
+  },
+  {
+    "id": "practice",
+    "title": "AI 实践与小产品",
+    "summary": "置顶承诺：把 AI 实践做成可复用系统；公开写踩坑、工作流与小产品进展。",
+    "source": "X · 置顶",
+    "href": "https://x.com/i/status/2096178382174032125",
+    "order": 2
+  },
+  {
+    "id": "tools",
+    "title": "模型与工具实测",
+    "summary": "grok 4.7 试玩、对 Claude / Opus 的关注，以及 Token 消耗与工具链吐槽。",
+    "source": "X · 近期",
+    "href": "https://x.com/ytlclaw/status/2102196405540667712",
+    "order": 3
+  },
+  {
+    "id": "contemplation",
+    "title": "观照与经典",
+    "summary": "心经解读、道德经「反用力」，以及田忌赛马、杯弓蛇影、买椟还珠一类短帖。",
+    "source": "X · 主题",
+    "href": "https://x.com/ytlclaw",
+    "order": 4
+  },
+  {
+    "id": "org-ai",
+    "title": "组织与 AI",
+    "summary": "企业里跨不过去的是权力与资源的制衡。长文线索：《AI 时代，人还剩下什么？》",
+    "source": "X · 主题",
+    "href": "https://x.com/ytlclaw",
+    "order": 5
+  },
+  {
+    "id": "growth",
+    "title": "增长笔记",
+    "summary": "Analytics 复盘；冷启动节奏：回复砍半、原创一天两条。",
+    "source": "X · 主题",
+    "href": "https://x.com/ytlclaw",
+    "order": 6
+  }
+]

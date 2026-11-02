@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeading from '../components/PageHeading.astro';
+import { formatZhDate } from '../data/site';
+
+const entries = (await getCollection('now')).sort(
+  (a, b) => b.data.updated.valueOf() - a.data.updated.valueOf(),
+);
+const latest = entries[0];
+if (!latest) {
+  throw new Error('Missing now entry');
+}
+const { Content } = await render(latest);
+---
+
+<Base title="现在" description="最近在做这些。nownownow 风格的近况页。">
+  <PageHeading index="01" label="现在" title={latest.data.title}>
+    更新于 {formatZhDate(latest.data.updated)}。记下此刻正在投入的事。
+  </PageHeading>
+  <article class="prose-wrap type-prose">
+    <Content />
+  </article>
+</Base>

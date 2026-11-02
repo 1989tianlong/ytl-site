@@ -1,0 +1,19 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="site-footer type-ui text-muted">
+  <div class="dot-divider" aria-hidden="true"></div>
+  <div class="footer-row">
+    <nav class="footer-links" aria-label="页脚链接">
+      <a href={site.x.url} rel="noopener noreferrer">X @{site.x.username}</a>
+      <a href={site.github.url} rel="noopener noreferrer">GitHub {site.github.login}</a>
+      <a href={site.hubs.vitaminclaw} rel="noopener noreferrer">VitaminClaw</a>
+    </nav>
+    <div class="theme-toggle" role="group" aria-label="主题">
+      <button class="type-ui text-muted" type="button" data-theme-option="light">浅色</button>
+      <button class="type-ui text-muted" type="button" data-theme-option="dark">深色</button>
+    </div>
+  </div>
+  <p class="type-meta text-muted">{site.tagline} · {site.location}</p>
+</footer>
