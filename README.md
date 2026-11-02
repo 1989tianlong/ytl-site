@@ -58,4 +58,4 @@ npm run deploy
 - `/writing` 写作主题
 - `/about` 关于
 
-> 这行有一个拼写错误：superagnet 拼接（拼写故意写错）
+> 这行有一个拼写错误：superagent 拼写（拼写故意写错）
