@@ -45,17 +45,19 @@ npm run deploy
 |------|------|
 | `src/content/now/*.md` | `/now` 近况（含首页摘录 `teaser`） |
 | `src/content/projects.json` | `/projects` 与首页项目列表，仅原创 |
-| `src/content/writing.json` | `/writing` 主题桶，外链 X，不是虚构长文 |
+| `src/content/articles/*.md` | 第一手笔记。文件名即 slug，页面在 `/writing/<slug>` |
+| `src/content/writing.json` | `/writing` 里的 X 主题索引，外链，不是长文 |
 | `src/data/site.ts` | 姓名、链接、Hero、About 用到的可核事实 |
 
-只写来源里有的事实。不要填假指标、假文章、空的播客/音乐/朋友栏目。
+只写来源里有的事实。不要填假指标、假文章、空的播客/音乐/朋友栏目。`src/content/articles/` 只放带来源的笔记。
 
 ## 页面
 
 - `/` 首页
 - `/now` 现在
 - `/projects` 项目
-- `/writing` 写作主题
+- `/writing` 写作：最新笔记，以及 X 主题
+- `/writing/<slug>` 单篇笔记，例如 `/writing/ai-infra-guard-engineering-notes`
 - `/about` 关于
 
 > 这行有一个拼写错误：superagent 拼写（拼写故意写错）

@@ -210,6 +210,7 @@ svg {
 
 .type-prose :where(a) {
   color: var(--accent);
+  overflow-wrap: anywhere;
   text-underline-offset: 0.25rem;
   text-decoration: underline;
   text-decoration-thickness: 0.0625rem;
@@ -219,7 +220,7 @@ svg {
   text-decoration-thickness: 0.125rem;
 }
 
-.type-prose :where(p + p, ul + p, p + ul, h2, h3) {
+.type-prose :where(p + p, ul + p, ol + p, p + ul, p + ol, h2, h3, table) {
   margin-top: 1.25rem;
 }
 
@@ -227,8 +228,33 @@ svg {
   margin-top: 2.5rem;
 }
 
-.type-prose :where(ul) {
+.type-prose :where(ul, ol) {
+  margin: 1.25rem 0 0;
   padding-left: 1.25rem;
+}
+
+.type-prose :where(li + li) {
+  margin-top: 0.35rem;
+}
+
+.type-prose :where(table) {
+  width: 100%;
+  margin-top: 1.25rem;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.type-prose :where(th, td) {
+  text-align: start;
+  vertical-align: top;
+  padding: 0.65rem 0.75rem 0.65rem 0;
+  border-bottom: 0.0625rem solid var(--divider-subtle);
+  font-weight: 400;
+}
+
+.type-prose :where(th) {
+  color: var(--muted);
 }
 
 .type-prose :where(li)::marker {
@@ -249,6 +275,7 @@ svg {
 }
 
 .type-prose :where(pre) {
+  margin: 1.25rem 0 0;
   font: 400 0.875rem / 1.8 var(--font-reading);
   background: var(--surface);
   max-width: 100%;
@@ -940,6 +967,20 @@ svg {
 
 .writing-note {
   margin-top: 2.5rem;
+  max-width: 44rem;
+}
+
+.writing-block {
+  display: grid;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.writing-block + .writing-block {
+  margin-top: 3.5rem;
+}
+
+.writing-block-intro {
   max-width: 44rem;
 }
 

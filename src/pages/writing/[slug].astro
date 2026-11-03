@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeading from '../../components/PageHeading.astro';
+import SectionGlyph from '../../components/SectionGlyph.astro';
+import { formatZhDate } from '../../data/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles', ({ data }) => !data.draft);
+  return articles.map((article) => ({
+    params: { slug: article.id },
+  }));
+}
+
+const slug = Astro.params.slug;
+const articles = await getCollection('articles', ({ data }) => !data.draft);
+const article = articles.find((entry) => entry.id === slug);
+if (!article) {
+  throw new Error(`Missing article: ${slug}`);
+}
+const { Content } = await render(article);
+const tags = article.data.tags?.join(' · ');
+---
+
+<Base title={article.data.title} description={article.data.summary}>
+  <PageHeading index="03" label="写作" title={article.data.title}>
+    <SectionGlyph slot="glyph" name="writing" />
+    {formatZhDate(article.data.date)}{tags ? ` · ${tags}` : ''}。{article.data.summary}
+  </PageHeading>
+  <article class="prose-wrap type-prose manual-offset">
+    <Content />
+  </article>
+  <p class="writing-note manual-offset">
+    <a class="more-link type-ui text-accent" href="/writing">返回写作</a>
+  </p>
+</Base>
