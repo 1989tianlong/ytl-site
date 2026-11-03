@@ -4,32 +4,87 @@ import Base from '../layouts/Base.astro';
 import ExternalArrow from '../components/ExternalArrow.astro';
 import PageHeading from '../components/PageHeading.astro';
 import SectionGlyph from '../components/SectionGlyph.astro';
-import { site } from '../data/site';
+import { formatZhDate, site } from '../data/site';
 
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const latest = articles[0];
+const earlier = articles.slice(1);
 const themes = (await getCollection('writing')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Base title="写作" description="从 X @ytlclaw 提炼的写作主题。这里没有虚构长文。">
+<Base title="写作" description={`站内工程笔记，以及从 X @${site.x.username} 提炼的主题索引。`}>
   <PageHeading index="03" label="写作" title="写作">
     <SectionGlyph slot="glyph" name="writing" />
-    主题来自 X @{site.x.username} 的置顶与公开时间线。本页是索引，不是假文章。
+    本站收第一手笔记。X @{site.x.username} 上的主题仍列在下面，只做索引。
   </PageHeading>
-  <div class="entry-list manual-offset">
-    {themes.map((theme) => (
-      <article class="entry-card entry-card-linked">
-        <p class="entry-meta type-meta text-muted">
-          <span>{theme.data.source}</span>
-        </p>
-        <h2 class="type-entry-title">
-          <a class="entry-title-link entry-link" href={theme.data.href} rel="noopener noreferrer">
-            {theme.data.title}
-            <ExternalArrow />
-          </a>
-        </h2>
-        <p class="entry-description type-body text-muted">{theme.data.summary}</p>
-      </article>
-    ))}
-  </div>
+
+  {latest && (
+    <section class="writing-block manual-offset" aria-labelledby="latest-article">
+      <h2 id="latest-article" class="type-heading text-primary">最新一篇</h2>
+      <div class="entry-list">
+        <article class="entry-card entry-card-linked">
+          <p class="entry-meta type-meta text-muted">
+            <span>{formatZhDate(latest.data.date)}</span>
+            {latest.data.tags?.length ? <span>{latest.data.tags.join(' · ')}</span> : null}
+          </p>
+          <h3 class="type-entry-title">
+            <a class="entry-title-link entry-link" href={`/writing/${latest.id}`}>
+              {latest.data.title}
+            </a>
+          </h3>
+          <p class="entry-description type-body text-muted">{latest.data.summary}</p>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {earlier.length > 0 && (
+    <section class="writing-block manual-offset" aria-labelledby="earlier-articles">
+      <h2 id="earlier-articles" class="type-heading text-primary">更早的笔记</h2>
+      <div class="entry-list">
+        {earlier.map((article) => (
+          <article class="entry-card entry-card-linked">
+            <p class="entry-meta type-meta text-muted">
+              <span>{formatZhDate(article.data.date)}</span>
+              {article.data.tags?.length ? <span>{article.data.tags.join(' · ')}</span> : null}
+            </p>
+            <h3 class="type-entry-title">
+              <a class="entry-title-link entry-link" href={`/writing/${article.id}`}>
+                {article.data.title}
+              </a>
+            </h3>
+            <p class="entry-description type-body text-muted">{article.data.summary}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="writing-block manual-offset" aria-labelledby="x-themes">
+    <h2 id="x-themes" class="type-heading text-primary">X 上的主题</h2>
+    <p class="writing-block-intro type-body text-muted">
+      来自 @{site.x.username} 的置顶与公开时间线。这一列是索引，短帖不在这里扩写成文。
+    </p>
+    <div class="entry-list">
+      {themes.map((theme) => (
+        <article class="entry-card entry-card-linked">
+          <p class="entry-meta type-meta text-muted">
+            <span>{theme.data.source}</span>
+          </p>
+          <h3 class="type-entry-title">
+            <a class="entry-title-link entry-link" href={theme.data.href} rel="noopener noreferrer">
+              {theme.data.title}
+              <ExternalArrow />
+            </a>
+          </h3>
+          <p class="entry-description type-body text-muted">{theme.data.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
   <p class="writing-note manual-offset type-body text-muted">
     完整时间线在
     <a class="text-accent" href={site.x.url} rel="noopener noreferrer">X @{site.x.username}</a>

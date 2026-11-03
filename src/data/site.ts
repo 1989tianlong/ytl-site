@@ -45,5 +45,6 @@ export function formatZhDate(date: Date): string {
 export function isCurrentPath(pathname: string, href: string): boolean {
   const current = pathname.replace(/\/$/, '') || '/';
   const target = href.replace(/\/$/, '') || '/';
-  return current === target;
+  if (target === '/') return current === '/';
+  return current === target || current.startsWith(`${target}/`);
 }
